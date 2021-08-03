@@ -1,6 +1,6 @@
 package domain
 
 type Account struct {
-	ActiveCard     bool
-	AvailableLimit int
+	ActiveCard     bool `json:"active-card"`
+	AvailableLimit int  `json:"available-limit"`
 }
