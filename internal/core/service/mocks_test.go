@@ -11,8 +11,8 @@ type accountRepositoryMock struct {
 	mock.Mock
 }
 
-func (mock *accountRepositoryMock) SaveAccount(cardStatus bool, availableLimit int) (domain.Account, error) {
-	args := mock.Called(cardStatus, availableLimit)
+func (mock *accountRepositoryMock) SaveAccount(account domain.Account) (domain.Account, error) {
+	args := mock.Called(account)
 	return args.Get(0).(domain.Account), args.Error(1)
 }
 

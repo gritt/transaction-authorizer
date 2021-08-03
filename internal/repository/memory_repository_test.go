@@ -115,13 +115,17 @@ func TestSaveAccount(t *testing.T) {
 	testCases := map[string]func(*testing.T){
 		"should save account with success": func(t *testing.T) {
 			// 	given
+			givenAccount := domain.Account{
+				ActiveCard:     false,
+				AvailableLimit: 100,
+			}
 			repository := NewMemoryRepository()
 
 			// 	when
-			savedAccount, err := repository.SaveAccount(false, 100)
+			savedAccount, err := repository.SaveAccount(givenAccount)
 
 			// 	then
-			assert.Equal(t, domain.Account{ActiveCard: false, AvailableLimit: 100}, savedAccount)
+			assert.Equal(t, givenAccount, savedAccount)
 			assert.NoError(t, err)
 		},
 		"should return error when account already initialized": func(t *testing.T) {
@@ -133,12 +137,12 @@ func TestSaveAccount(t *testing.T) {
 
 			repository := NewMemoryRepository()
 
-			firstAccount, err := repository.SaveAccount(false, 100)
+			firstAccount, err := repository.SaveAccount(domain.Account{ActiveCard: false, AvailableLimit: 100})
 			assert.Equal(t, wantAccount, firstAccount)
 			assert.NoError(t, err)
 
 			// 	when
-			secondAccount, err := repository.SaveAccount(true, 300)
+			secondAccount, err := repository.SaveAccount(domain.Account{ActiveCard: true, AvailableLimit: 300})
 
 			// 	then
 			assert.Equal(t, wantAccount, secondAccount)
@@ -158,7 +162,7 @@ func TestFindAccount(t *testing.T) {
 		"should find account with success": func(t *testing.T) {
 			// 	given
 			repository := NewMemoryRepository()
-			savedAccount, err := repository.SaveAccount(false, 100)
+			savedAccount, err := repository.SaveAccount(domain.Account{ActiveCard: false, AvailableLimit: 100})
 			assert.NoError(t, err)
 			assert.NotEmpty(t, savedAccount)
 
@@ -194,7 +198,7 @@ func TestUpdateAccountLimit(t *testing.T) {
 		"should update account limit with success": func(t *testing.T) {
 			// 	given
 			repository := NewMemoryRepository()
-			initialAccount, err := repository.SaveAccount(true, 100)
+			initialAccount, err := repository.SaveAccount(domain.Account{ActiveCard: true, AvailableLimit: 100})
 			assert.NoError(t, err)
 			assert.NotEmpty(t, initialAccount)
 

@@ -18,12 +18,12 @@ func TestCreateAccount(t *testing.T) {
 	testCases := map[string]func(*testing.T, *accountRepositoryMock){
 		"should create account with success": func(t *testing.T, accountRepositoryMock *accountRepositoryMock) {
 			// 	given
-			accountRepositoryMock.On("SaveAccount", false, 100).Return(givenAccount, nil)
+			accountRepositoryMock.On("SaveAccount", givenAccount).Return(givenAccount, nil)
 
 			accountService := NewAccountService(accountRepositoryMock)
 
 			// 	when
-			account, err := accountService.CreateAccount(false, 100)
+			account, err := accountService.CreateAccount(givenAccount)
 
 			// 	then
 			assert.Equal(t, givenAccount, account)
@@ -31,12 +31,12 @@ func TestCreateAccount(t *testing.T) {
 		},
 		"should return error when repository fails to save": func(t *testing.T, accountRepositoryMock *accountRepositoryMock) {
 			// 	given
-			accountRepositoryMock.On("SaveAccount", false, 100).Return(domain.Account{}, givenErr)
+			accountRepositoryMock.On("SaveAccount", givenAccount).Return(domain.Account{}, givenErr)
 
 			accountService := NewAccountService(accountRepositoryMock)
 
 			// 	when
-			account, err := accountService.CreateAccount(false, 100)
+			account, err := accountService.CreateAccount(givenAccount)
 
 			// 	then
 			assert.Empty(t, account)

@@ -31,12 +31,9 @@ func (m *MemoryRepository) FindTransactionsAfter(time time.Time) []domain.Transa
 	return foundTransactions
 }
 
-func (m *MemoryRepository) SaveAccount(cardStatus bool, availableLimit int) (domain.Account, error) {
+func (m *MemoryRepository) SaveAccount(account domain.Account) (domain.Account, error) {
 	if !m.accountInitialized {
-		m.account = domain.Account{
-			ActiveCard:     cardStatus,
-			AvailableLimit: availableLimit,
-		}
+		m.account = account
 		m.accountInitialized = true
 		return m.account, nil
 	}
