@@ -12,12 +12,12 @@ func Test_parseOperation(t *testing.T) {
 	tests := []struct {
 		name          string
 		givenJSON     string
-		wantOperation Operation
+		wantOperation Input
 	}{
 		{
 			name:      "should parse account operation",
 			givenJSON: `{"account": {"active-card": true, "available-limit": 100}}`,
-			wantOperation: Operation{
+			wantOperation: Input{
 				Account: domain.Account{
 					ActiveCard:     true,
 					AvailableLimit: 100,
@@ -27,7 +27,7 @@ func Test_parseOperation(t *testing.T) {
 		{
 			name:      "should parse transaction operation",
 			givenJSON: `{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T10:00:00.000Z"}}`,
-			wantOperation: Operation{
+			wantOperation: Input{
 				Transaction: domain.Transaction{
 					Amount:    20,
 					Merchant:  "Burger King",
@@ -38,7 +38,7 @@ func Test_parseOperation(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			gotOperation := parseOperation(test.givenJSON)
+			gotOperation := parseInput(test.givenJSON)
 
 			assert.Equal(t, test.wantOperation, gotOperation)
 		})

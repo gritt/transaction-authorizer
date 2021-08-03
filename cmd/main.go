@@ -16,17 +16,17 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		operation := parseOperation(scanner.Text())
+		input := parseInput(scanner.Text())
 
-		if operation.isCreateAccount() {
-			account, err := accountService.CreateAccount(operation.Account)
-			txt := fmt.Sprintf("%v : %s", account, err)
-			fmt.Println(txt)
+		if input.isCreateAccount() {
+			account, err := accountService.CreateAccount(input.Account)
+			output := parseOutput(account, []error{err})
+			fmt.Println(output)
 			continue
 		}
 
-		transaction, err := transactionService.AuthorizeTransaction(operation.Transaction)
-		txt := fmt.Sprintf("%v : %s", transaction, err)
-		fmt.Println(txt)
+		account, errs := transactionService.AuthorizeTransaction(input.Transaction)
+		output := parseOutput(account, errs)
+		fmt.Println(output)
 	}
 }

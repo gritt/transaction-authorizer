@@ -8,17 +8,17 @@ import (
 	"github.com/gritt/transaction-authorizer/internal/core/domain"
 )
 
-type Operation struct {
+type Input struct {
 	Transaction domain.Transaction `json:"transaction"`
 	Account     domain.Account     `json:"account"`
 }
 
-func (o Operation) isCreateAccount() bool {
+func (o Input) isCreateAccount() bool {
 	return o.Account != domain.Account{}
 }
 
-func parseOperation(JSON string) Operation {
-	operation := Operation{}
+func parseInput(JSON string) Input {
+	operation := Input{}
 	if err := json.Unmarshal([]byte(JSON), &operation); err != nil {
 		fmt.Println("failed to parse operation", err)
 		os.Exit(1)
