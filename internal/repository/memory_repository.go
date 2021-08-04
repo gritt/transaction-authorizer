@@ -1,10 +1,10 @@
 package repository
 
 import (
+	"errors"
 	"time"
 
 	"github.com/gritt/transaction-authorizer/internal/core/domain"
-	"github.com/pkg/errors"
 )
 
 type MemoryRepository struct {
