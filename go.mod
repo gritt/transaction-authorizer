@@ -1,4 +1,4 @@
-module github.com/gritt/transaction-authorizer
+module github.com/unknown/authorizer
 
 go 1.16
 

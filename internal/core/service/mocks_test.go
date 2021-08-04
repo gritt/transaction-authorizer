@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"github.com/gritt/transaction-authorizer/internal/core/domain"
 	"github.com/stretchr/testify/mock"
+	"github.com/unknown/authorizer/internal/core/domain"
 )
 
 type accountRepositoryMock struct {

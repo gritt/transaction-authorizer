@@ -1,6 +1,6 @@
 package service
 
-import "github.com/gritt/transaction-authorizer/internal/core/domain"
+import "github.com/unknown/authorizer/internal/core/domain"
 
 type (
 	AccountRepository interface {

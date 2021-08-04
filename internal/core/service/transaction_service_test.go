@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gritt/transaction-authorizer/internal/core/domain"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"github.com/unknown/authorizer/internal/core/domain"
 )
 
 func TestAuthorizeTransaction(t *testing.T) {

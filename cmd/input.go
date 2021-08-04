@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gritt/transaction-authorizer/internal/core/domain"
+	"github.com/unknown/authorizer/internal/core/domain"
 )
 
 type Input struct {

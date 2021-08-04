@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gritt/transaction-authorizer/internal/core/service"
-	"github.com/gritt/transaction-authorizer/internal/repository"
+	"github.com/unknown/authorizer/internal/core/service"
+	"github.com/unknown/authorizer/internal/repository"
 )
 
 func main() {

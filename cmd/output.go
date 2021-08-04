@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/gritt/transaction-authorizer/internal/core/domain"
+	"github.com/unknown/authorizer/internal/core/domain"
 )
 
 type Output struct {

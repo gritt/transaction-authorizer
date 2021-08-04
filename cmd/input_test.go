@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gritt/transaction-authorizer/internal/core/domain"
 	"github.com/stretchr/testify/assert"
+	"github.com/unknown/authorizer/internal/core/domain"
 )
 
 func Test_parseOperation(t *testing.T) {
